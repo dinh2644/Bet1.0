@@ -7,6 +7,8 @@ import { supabase } from "../client";
 
 const Card = (props) => {
   const [count, setCount] = useState(props.betCount);
+
+  // handle update bet count
   const updateCount = async (event) => {
     event.preventDefault();
 

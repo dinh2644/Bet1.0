@@ -5,6 +5,7 @@ import { supabase } from "../client";
 const CreatePost = () => {
   const [post, setPost] = useState({ title: "", author: "", description: "" });
 
+  // handle input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
     setPost((prev) => {
@@ -15,6 +16,7 @@ const CreatePost = () => {
     });
   };
 
+  // handle create post
   const createPost = async (event) => {
     event.preventDefault();
 

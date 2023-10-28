@@ -18,7 +18,7 @@ const ReadPosts = (props) => {
             title={post.title}
             author={post.author}
             description={post.description}
-            betCount={post.betCount}
+            betCount={post.betCount} // <-- only thing added in this file
           />
         ))
       ) : (
