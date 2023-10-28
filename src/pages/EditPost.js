@@ -7,12 +7,14 @@ const EditPost = ({ data }) => {
   const { id } = useParams();
   const post = data.find((item) => String(item.id) === String(id));
 
+  // hold information for new updated inputs by user
   const [editedPost, setEditedPost] = useState({
     title: "",
     author: "",
     description: "",
   });
 
+  // handle input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
     setEditedPost((prev) => {
@@ -23,6 +25,7 @@ const EditPost = ({ data }) => {
     });
   };
 
+  // handle update post
   const updatePost = async (event) => {
     event.preventDefault();
 
@@ -40,6 +43,19 @@ const EditPost = ({ data }) => {
     }
 
     window.location = "/";
+  };
+
+  // handle delete post
+  const deletePost = async (event) => {
+    event.preventDefault();
+
+    const { error } = await supabase.from("Posts").delete().eq("id", id);
+
+    if (error) {
+      console.log(error);
+    }
+
+    window.location = "http://localhost:3000/";
   };
 
   if (!post) {
@@ -85,7 +101,9 @@ const EditPost = ({ data }) => {
         ></textarea>
         <br />
         <input type="submit" value="Submit" onClick={updatePost} />
-        <button className="deleteButton">Delete</button>
+        <button className="deleteButton" onClick={deletePost}>
+          Delete
+        </button>
       </form>
     </div>
   );
